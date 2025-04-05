@@ -1,5 +1,11 @@
+import trade.TradeManager;
+import utility.FileManager;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+
+        TradeManager tradeManager = new TradeManager();
+        FileManager.getTrades(tradeManager);
+
     }
 }
