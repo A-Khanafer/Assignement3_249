@@ -24,6 +24,6 @@ public class TradeManager {
     }
 
     public String toString(){
-        return trades.toString();
+        return trades.toString() ;
     }
 }

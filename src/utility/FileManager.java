@@ -15,16 +15,16 @@ public class FileManager {
         Scanner scanner;
         PrintWriter updateWriter;
         try{
-            scanner = new Scanner(new FileInputStream("TradeData.txt"));
-            updateWriter = new PrintWriter(new FileOutputStream("UpdatedTradeData.txt"));
+            scanner = new Scanner(new FileInputStream("tradeData.txt"));
+            updateWriter = new PrintWriter(new FileOutputStream("updatedTradeData.txt"));
 
             while(scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] tokens = line.split(",");
-                trades.addTrade(new Trade(tokens[0] , tokens[1] , tokens[2] , Integer.parseInt(tokens[3])));
+                trades.addTrade(new Trade(tokens[0] , tokens[1] , tokens[2] , Double.parseDouble(tokens[3])));
             }
 
-            trades.sortTrades();
+//            trades.sortTrades();
             updateWriter.println(trades);
             scanner.close();
             updateWriter.close();

@@ -51,4 +51,9 @@ public class Trade {
     public String getProductName() {
         return productName;
     }
+
+    @Override
+    public String toString() {
+        return productName + "," + country + "," + category + "," + finalPrice +"\n";
+    }
 }
