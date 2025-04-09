@@ -1,7 +1,7 @@
 package trade;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 
 public class TradeManager {
 
@@ -19,8 +19,8 @@ public class TradeManager {
         this.trades.remove(trade);
     }
 
-    public void sortTrades(){
-        trades.sort(null);
+    public void sort(){
+        Collections.sort(this.trades);
     }
 
     public String toString(){
