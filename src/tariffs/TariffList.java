@@ -86,6 +86,67 @@ public class TariffList implements TariffPolicy {
         }
     }
 
+    public TariffNode find(String origin, String destination, String category) {
+        if (head == null) {
+            return null;
+        }
+        TariffNode current = head;
+
+        while (current != null) {
+            if (origin.equals(current.tariff.getOriginCountry())
+                    && destination.equals(current.tariff.getDestinationCountry())
+                    && category.equals(current.tariff.getProductCategory())){
+                return current;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public boolean contains(String origin, String destination, String category) {
+        if (head == null) {
+            return false;
+        }
+        TariffNode current = head;
+
+        while (current != null) {
+            if (origin.equals(current.tariff.getOriginCountry())
+                    && destination.equals(current.tariff.getDestinationCountry())
+                    && category.equals(current.tariff.getProductCategory())){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+
+
+    public boolean equals(TariffList tList) {
+        TariffNode current = head;
+TariffNode otherCurrent = tList.head;
+
+if (this.size != tList.size) {
+    return false;
+}
+
+        while (current != null) {
+            if(!current.tariff.getOriginCountry().equals(otherCurrent.tariff.getOriginCountry())
+            || !current.tariff.getDestinationCountry().equals(otherCurrent.tariff.getDestinationCountry())
+            || !current.tariff.getProductCategory().equals(otherCurrent.tariff.getProductCategory())){
+              return false;
+            }
+
+            current = current.next;
+            otherCurrent = otherCurrent.next;
+        }
+        return true;
+    }
+
+
+
+
+
 
     private static class TariffNode{
         private Tariff tariff;
@@ -152,49 +213,7 @@ public class TariffList implements TariffPolicy {
     }
 
 
-    public TariffNode find(String origin, String destination, String category) {
-if (head == null) {
-    return null;
-}
-TariffNode current = head;
 
-while (current != null) {
-    if (origin.equals(current.tariff.getOriginCountry())
-            && destination.equals(current.tariff.getDestinationCountry())
-            && category.equals(current.tariff.getProductCategory())){
-        return current;
-    }
-    current = current.next;
-}
-return null;
-    }
-
-    public boolean contains(String origin, String destination, String category) {
-        if (head == null) {
-            return false;
-        }
-        TariffNode current = head;
-
-        while (current != null) {
-            if (origin.equals(current.tariff.getOriginCountry())
-                    && destination.equals(current.tariff.getDestinationCountry())
-                    && category.equals(current.tariff.getProductCategory())){
-                return true;
-            }
-            current = current.next;
-        }
-        return false;
-    }
-
-        public boolean equals(TariffList tList) {
-        TariffNode current = head;
-        while (current != null) {
-            if(){
-
-            }
-
-            }
-        }
 
 
 
