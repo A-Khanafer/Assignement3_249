@@ -1,6 +1,6 @@
 package trade;
 
-public class Trade {
+public class Trade implements Comparable<Trade> {
 
     private String country,productName,category;
     private double initialPrice,finalPrice;
@@ -56,4 +56,12 @@ public class Trade {
     public String toString() {
         return productName + "," + country + "," + category + "," + finalPrice +"\n";
     }
+
+    @Override
+    public int compareTo(Trade o) {
+        return this.productName.compareToIgnoreCase(o.productName);
+    }
+
+
+
 }

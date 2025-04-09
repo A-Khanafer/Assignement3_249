@@ -24,7 +24,7 @@ public class FileManager {
                 trades.addTrade(new Trade(tokens[0] , tokens[1] , tokens[2] , Double.parseDouble(tokens[3])));
             }
 
-//            trades.sortTrades();
+            trades.sort();
             updateWriter.println(trades);
             scanner.close();
             updateWriter.close();
@@ -33,4 +33,6 @@ public class FileManager {
         }
 
     }
+
+
 }
