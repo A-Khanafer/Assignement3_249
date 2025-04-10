@@ -1,7 +1,9 @@
 package tariffs;
 
+import java.io.*;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class TariffList implements TariffPolicy {
 
@@ -16,7 +18,7 @@ public class TariffList implements TariffPolicy {
     public TariffList(TariffList tariffList) {
         this.head = new TariffNode(tariffList.head);
         TariffNode current = head;
-        while(current.next != null) {
+        while (current.next != null) {
             current = new TariffNode(current.next);
         }
         this.size = tariffList.size;
@@ -30,12 +32,12 @@ public class TariffList implements TariffPolicy {
     public void addAtIndex(int index, Tariff tariff) throws NoSuchElementException {
         if (index < 0 || index >= size) {
             throw new NoSuchElementException();
-        }else{
-            if(head == null) {
+        } else {
+            if (head == null) {
                 head = new TariffNode(tariff, null);
-            }else if(index == 0) {
+            } else if (index == 0) {
                 head = new TariffNode(tariff, head);
-            }else{
+            } else {
                 TariffNode current = head;
                 for (int i = 1; i < index; i++) {
                     current = current.next;
@@ -49,10 +51,10 @@ public class TariffList implements TariffPolicy {
     public void deleteFromIndex(int index) throws NoSuchElementException {
         if (index < 0 || index > size) {
             throw new NoSuchElementException();
-        }else{
-            if(index == 0) {
+        } else {
+            if (index == 0) {
                 head = head.next;
-            }else {
+            } else {
                 TariffNode current = head;
                 for (int i = 1; i < index; i++) {
                     current = current.next;
@@ -64,19 +66,19 @@ public class TariffList implements TariffPolicy {
     }
 
     public void deleteFromStart() {
-        if(head != null) {
+        if (head != null) {
             head = head.next;
             size--;
         }
     }
 
     public void replaceAtIndex(int index, Tariff tariff) {
-        if (index >= 0 && index < size){
-            if(head == null) {
+        if (index >= 0 && index < size) {
+            if (head == null) {
                 head = new TariffNode(tariff, null);
-            }else if(index == 0) {
+            } else if (index == 0) {
                 head = new TariffNode(tariff, head.next);
-            }else{
+            } else {
                 TariffNode current = head;
                 for (int i = 1; i < index; i++) {
                     current = current.next;
@@ -86,7 +88,7 @@ public class TariffList implements TariffPolicy {
         }
     }
 
-    public TariffNode find(String origin, String destination, String category) {
+    public Tariff find(String origin, String destination, String category) {
         if (head == null) {
             return null;
         }
@@ -95,8 +97,8 @@ public class TariffList implements TariffPolicy {
         while (current != null) {
             if (origin.equals(current.tariff.getOriginCountry())
                     && destination.equals(current.tariff.getDestinationCountry())
-                    && category.equals(current.tariff.getProductCategory())){
-                return current;
+                    && category.equals(current.tariff.getProductCategory())) {
+                return new Tariff(current.tariff);
             }
             current = current.next;
         }
@@ -112,13 +114,14 @@ public class TariffList implements TariffPolicy {
         while (current != null) {
             if (origin.equals(current.tariff.getOriginCountry())
                     && destination.equals(current.tariff.getDestinationCountry())
-                    && category.equals(current.tariff.getProductCategory())){
+                    && category.equals(current.tariff.getProductCategory())) {
                 return true;
             }
             current = current.next;
         }
         return false;
     }
+
 
     public boolean equals(TariffList tList) {
         TariffNode current = head;
@@ -129,10 +132,10 @@ public class TariffList implements TariffPolicy {
         }
 
         while (current != null) {
-            if(!current.tariff.getOriginCountry().equals(otherCurrent.tariff.getOriginCountry())
-            || !current.tariff.getDestinationCountry().equals(otherCurrent.tariff.getDestinationCountry())
-            || !current.tariff.getProductCategory().equals(otherCurrent.tariff.getProductCategory())){
-              return false;
+            if (!current.tariff.getOriginCountry().equals(otherCurrent.tariff.getOriginCountry())
+                    || !current.tariff.getDestinationCountry().equals(otherCurrent.tariff.getDestinationCountry())
+                    || !current.tariff.getProductCategory().equals(otherCurrent.tariff.getProductCategory())) {
+                return false;
             }
 
             current = current.next;
@@ -142,30 +145,26 @@ public class TariffList implements TariffPolicy {
     }
 
 
-
-
-
-
-    private static class TariffNode{
+    private static class TariffNode {
         private Tariff tariff;
         private TariffNode next;
 
-        public TariffNode(){
+        public TariffNode() {
             tariff = null;
             next = null;
         }
 
-        public TariffNode(Tariff tariff, TariffNode next){
+        public TariffNode(Tariff tariff, TariffNode next) {
             this.tariff = new Tariff(tariff);
             this.next = next;
         }
 
-        public TariffNode(TariffNode node){
+        public TariffNode(TariffNode node) {
             this.tariff = new Tariff(node.tariff);
             this.next = node.next;
         }
 
-        public TariffNode clone(TariffNode node){
+        public TariffNode clone(TariffNode node) {
             return new TariffNode(node);
         }
 
@@ -211,13 +210,12 @@ public class TariffList implements TariffPolicy {
     }
 
 
-
-
-
-
-
     @Override
     public String evaluateTrade(double proposedTariff, double minimumTariff) {
+        String result = "";
+        if (proposedTariff >= minimumTariff) {
+
+        }
         return "";
     }
 }
