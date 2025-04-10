@@ -1,5 +1,7 @@
 package utility;
 
+import tariffs.Tariff;
+import tariffs.TariffList;
 import trade.Trade;
 import trade.TradeManager;
 
@@ -33,6 +35,32 @@ public class FileManager {
         }
 
     }
+
+
+    public static void getTariffs(TariffList list) {
+        Scanner scanner;
+
+        try{
+            scanner = new Scanner(new FileInputStream("Tariffs.txt"));
+
+
+            while(scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] tokens = line.split(",");
+                list.addToStart(new Tariff(tokens[0] , tokens[1] , tokens[2] , Double.parseDouble(tokens[3])));
+            }
+
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+
+    }
+
+
+
+
 
 
 }
