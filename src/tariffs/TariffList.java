@@ -120,15 +120,13 @@ public class TariffList implements TariffPolicy {
         return false;
     }
 
-
-
     public boolean equals(TariffList tList) {
         TariffNode current = head;
-TariffNode otherCurrent = tList.head;
+        TariffNode otherCurrent = tList.head;
 
-if (this.size != tList.size) {
-    return false;
-}
+        if (this.size != tList.size) {
+            return false;
+        }
 
         while (current != null) {
             if(!current.tariff.getOriginCountry().equals(otherCurrent.tariff.getOriginCountry())
