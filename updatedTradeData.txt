@@ -1,0 +1,5 @@
+[Car,Japan,Automobiles,28749.999999999996
+, Rice,India,Agriculture,525.0
+, Smartphone,USA,Electronics,880.0000000000001
+, Steel,China,Raw Material,1250.0
+]
