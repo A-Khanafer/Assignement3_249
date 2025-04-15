@@ -213,11 +213,11 @@ public class TariffList implements TariffPolicy {
     @Override
     public String evaluateTrade(double proposedTariff, double minimumTariff) {
         if(proposedTariff >= minimumTariff){
-            return "Proposed tariff meets or exceeds the minimum requirement.\n";
+            return " - Accepted. \nProposed tariff meets or exceeds the minimum requirement.";
         } else if (proposedTariff >= minimumTariff*0.8) {
-            return "Proposed tariff " + proposedTariff + " is within 20% of the required minimum tariff "+ minimumTariff + ".\n";
+            return " - Conditionally Accepted. \nProposed tariff " + proposedTariff + "% is within 20% of the required minimum tariff "+ minimumTariff + "%.";
         } else {
-            return "Proposed tariff " + proposedTariff + " is more 20% below the minimum tariff "+ minimumTariff + ".\n";
+            return " - Rejected. \nProposed tariff " + proposedTariff + "% is more than 20% below the minimum tariff "+ minimumTariff + "%.";
         }
     }
 }
